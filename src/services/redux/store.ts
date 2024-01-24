@@ -1,35 +1,36 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import storage from 'redux-persist/lib/storage';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import storage from "redux-persist/lib/storage";
 import {
-	persistReducer,
-	persistStore,
-	PERSIST,
-	REHYDRATE,
-	FLUSH,
-	PAUSE,
-	PURGE,
-	REGISTER,
-} from 'redux-persist';
+  persistReducer,
+  persistStore,
+  PERSIST,
+  REHYDRATE,
+  FLUSH,
+  PAUSE,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import { searchReducer } from "./slices/search/search";
 
 const rootReducer = combineReducers({
-	
+  search: searchReducer,
 });
 
 const persistConfig = {
-	key: 'root',
-	storage,
+  key: "root",
+  storage,
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-	reducer: persistedReducer,
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: {
-				ignoredActions: [PERSIST, REHYDRATE, FLUSH, PAUSE, PURGE, REGISTER],
-			},
-		}),
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [PERSIST, REHYDRATE, FLUSH, PAUSE, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);

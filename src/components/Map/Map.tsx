@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import './Map.css';
 
 interface MapProps {
   coordinates: [number, number];
@@ -38,7 +39,7 @@ const Map: React.FC<MapProps> = ({ coordinates }) => {
   }, [coordinates]);
 
   return (
-    <div ref={mapContainerRef} style={{ height: "500px", width: "900px" }} />
+    <div className="map" ref={mapContainerRef} />
   );
 };
 

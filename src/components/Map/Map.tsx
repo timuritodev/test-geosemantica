@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect, FC } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import './Map.css';
@@ -7,7 +7,7 @@ interface MapProps {
   coordinates: [number, number];
 }
 
-const Map: React.FC<MapProps> = ({ coordinates }) => {
+const Map: FC<MapProps> = ({ coordinates }) => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
 

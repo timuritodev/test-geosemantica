@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { FC, useState } from "react";
 import Map from "./components/Map/Map";
 import Search from "./components/Search/Search";
 import "./App.css";
@@ -6,7 +6,7 @@ import { IAddress } from "./types/Addres.types";
 import ResetButton from "./components/ResetButton/ResetButton";
 import { useAppSelector } from "./services/typeHooks";
 
-const App: React.FC = () => {
+const App: FC = () => {
   const addresses = useAppSelector((state) => state.search.address);
   const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
 

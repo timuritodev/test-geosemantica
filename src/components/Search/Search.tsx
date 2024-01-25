@@ -1,18 +1,18 @@
-import React, { useEffect, ChangeEvent } from 'react';
+import { useEffect, ChangeEvent, FC, useState } from 'react';
 import { IAddress } from '../../types/Addres.types';
 import { useAppSelector, useAppDispatch } from "../../services/typeHooks";
-import { getCoordinatesAPI } from '../../services/redux/slices/search/search';
+import { getCoordinatesAPI, resetSearch } from '../../services/redux/slices/search/search';
 import "./Search.css";
 
 interface SearchProps {
   onAddressSelect: (address: IAddress) => void;
 }
 
-const Search: React.FC<SearchProps> = ({ onAddressSelect }) => {
+const Search: FC<SearchProps> = ({ onAddressSelect }) => {
   const dispatch = useAppDispatch();
   const addresses = useAppSelector((state) => state.search.address);
 
-  const [searchTerm, setSearchTerm] = React.useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     if (searchTerm.trim() !== '') {
@@ -25,15 +25,23 @@ const Search: React.FC<SearchProps> = ({ onAddressSelect }) => {
     setSearchTerm(address.formatted);
   };
 
+  const handleButtonClick = () => {
+    setSearchTerm('');
+    dispatch(resetSearch());
+  };
+
   return (
     <div className='search'>
-      <input
-        className='input__search'
-        type="text"
-        placeholder="Введите адрес"
-        value={searchTerm}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-      />
+      <div className='input__container'>
+        <input
+          className='input__search'
+          type="text"
+          placeholder="Введите адрес"
+          value={searchTerm}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+        />
+        <button className='search__button' type='button' onClick={handleButtonClick}>Сбросить поиск</button>
+      </div>
       <ul className='element__container'>
         {addresses.results.length !== 0 &&
           addresses.results.map((address) => (

@@ -15,9 +15,16 @@ export const fetchData = (url: string, method: string) => {
   }).then((res) => checkRes(res));
 };
 
+// export const fetchSearch = (text: string): Promise<Response> => {
+//   return fetchData(
+//     `https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&apiKey=2856b3c4c0964cb5b0f4bba275fe0eef`,
+//     "GET"
+//   ).then((res) => checkRes(res));
+// };
+
 export const fetchSearch = (text: string): Promise<Response> => {
   return fetchData(
-    `https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&apiKey=2856b3c4c0964cb5b0f4bba275fe0eef`,
+    `https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&format=json&apiKey=2856b3c4c0964cb5b0f4bba275fe0eef`,
     "GET"
   ).then((res) => checkRes(res));
 };

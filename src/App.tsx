@@ -14,13 +14,19 @@ const App: React.FC = () => {
     setSelectedAddress(address);
   };
 
+  const coordinates: [number, number] = [
+    selectedAddress?.lon || 0, 
+    selectedAddress?.lat || 0,  
+  ];
+
+  console.log(addresses,123123)
   return (
     <div className="app">
       <div className="input-container">
         <Search onAddressSelect={handleAddressSelect} />
       </div>
-      <Map coordinates={selectedAddress?.geometry.coordinates || [0, 0]} />
-      {addresses.features.length !== 0 && <ResetButton />}
+      <Map coordinates={coordinates || [0, 0]} />
+      {addresses.results.length > 0 && <ResetButton />}
     </div>
   );
 };

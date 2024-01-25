@@ -34,10 +34,10 @@ const Search: React.FC<SearchProps> = ({ onAddressSelect }) => {
         onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
       />
       <ul className='element__container'>
-        {addresses.features.length !== 0 &&
-          addresses.features.map((address) => (
-            <li className='element' key={address.properties.place_id} onClick={() => handleSelect(address)}>
-              {address.properties.formatted}
+        {addresses.results.length !== 0 &&
+          addresses.results.map((address) => (
+            <li className='element' key={address.place_id} onClick={() => handleSelect(address)}>
+              {address.formatted}
             </li>
           ))}
       </ul>

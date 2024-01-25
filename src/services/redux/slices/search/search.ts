@@ -19,8 +19,7 @@ const initialState: ISearchState = {
   status: "idle",
   error: "",
   address: {
-    type: "",
-    features: [],
+    results: [],
     query: {
       text: "",
     },

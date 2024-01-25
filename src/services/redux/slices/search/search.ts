@@ -30,7 +30,9 @@ const initialState: ISearchState = {
 export const searchSlice = createSlice({
   name: "@@search",
   initialState,
-  reducers: {},
+  reducers: {
+    resetSearch: () => initialState,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCoordinatesAPI.fulfilled, (state, action) => {
@@ -47,5 +49,7 @@ export const searchSlice = createSlice({
       });
   },
 });
+
+export const { resetSearch } = searchSlice.actions;
 
 export const searchReducer = searchSlice.reducer;

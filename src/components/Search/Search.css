@@ -22,13 +22,13 @@
     height: 34px;
     font-size: 10px;
     background-color: red;
+    color: #fff;
 }
 
 @media screen and (max-width: 759px) {
     .search__button {
         width: 50px;
         font-size: 7px;
-
     }
 }
 

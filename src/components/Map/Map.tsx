@@ -17,7 +17,7 @@ const Map: FC<MapProps> = ({ coordinates }) => {
       style:
         "https://tiles.basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
       center: coordinates,
-      zoom: 1,
+      zoom: coordinates[0] !== 0 && coordinates[1] !== 0 ? 10 : 2,
     });
 
     new maplibregl.Marker().setLngLat(coordinates).addTo(mapRef.current);

@@ -22,6 +22,7 @@ const Search: React.FC<SearchProps> = ({ onAddressSelect }) => {
 
   const handleSelect = (address: IAddress) => {
     onAddressSelect(address);
+    setSearchTerm(address.formatted);
   };
 
   return (
